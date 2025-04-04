@@ -29,19 +29,19 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: |-
-        terraform plan \
-        -var="region=eu-north-1" \
-        -var="bucket=$TF_STATE_BUCKET_NAME" \
-        -var="public_key=$PUBLIC_SSH_KEY" \
-        -var="private_key=$PRIVATE_SSH_KEY" \
-        -var="key_name=deployer-key" \
-        -out=PLAN
+          terraform plan \
+          -var="region=eu-north-1" \
+          -var="bucket=$TF_STATE_BUCKET_NAME" \
+          -var="public_key=$PUBLIC_SSH_KEY" \
+          -var="private_key=$PRIVATE_SSH_KEY" \
+          -var="key_name=deployer-key" \
+          -out=PLAN
         working-directory: ./terraform  
 
       - name: Terraform Apply
         id: apply
         run: |-
-        terraform apply PLAN
-        working-directory: ./terraform
+          terraform apply PLAN
+          working-directory: ./terraform
 
 
