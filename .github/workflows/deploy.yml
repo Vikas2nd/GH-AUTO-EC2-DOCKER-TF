@@ -74,7 +74,7 @@ jobs:
           REPOSITORY: example-node-app
           IMAGE_TAG: ${{ github.sha }}
           AWS_DEFAULT_REGION: eu-north-1   
-        uses: applboy/ssh-action@master
+        uses: appleboy/ssh-action@master
         with:
           hosts: ${{ env.SERVER_PUBLIC_IP }}
           username: ubuntu
