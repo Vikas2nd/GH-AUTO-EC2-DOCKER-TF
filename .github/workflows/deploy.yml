@@ -40,7 +40,7 @@ jobs:
       - name: Terraform Apply
         id: apply
         run: |-
-          terraform apply "PLAN"
-          working-directory: ./terraform
+          terraform apply PLAN
+        working-directory: ./terraform
 
 
