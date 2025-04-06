@@ -105,6 +105,9 @@ jobs:
             export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
             export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
             export AWS_REGION=${AWS_REGION}
+            export REGISTRY=${REGISTRY}
+            export REPOSITORY=${REPOSITORY}
+            export IMAGE_TAG={IMAGE_TAG}
     
             echo "Logging in to ECR...."
             sudo aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 692859919251.dkr.ecr.eu-north-1.amazonaws.com
