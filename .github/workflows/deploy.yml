@@ -81,7 +81,7 @@ jobs:
           key: ${{ env.PRIVATE_SSH_KEY }}
           #port: 22
           envs: REGISTRY,REPOSITORY,IMAGE_TAG
-          run: |-
+          script: |-
             echo "Pulling  image from ECR..."
             sudo docker pull $REGISTRY/$REPOSITORY:$IMAGE_TAG
             echo "Docker pull completed..."
