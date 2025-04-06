@@ -72,17 +72,18 @@ jobs:
       - name: Deploy docker image to EC2
         uses: appleboy/ssh-action@master
         env:
-          FOO: "BAR"
-          BAR: "FOO"
-          SHA: ${{ github.sha }}
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: example-node-app
+          IMAGE_TAG: ${{ github.sha }}
         with:
           host: ${{ env.SERVER_PUBLIC_IP }}
           username: ubuntu
           key: ${{ env.PRIVATE_SSH_KEY }}
           #port: 22
-          envs: FOO,BAR,SHA
-          script: |
-            echo "I am $FOO"
-            echo "I am $BAR"
-            echo "sha: $SHA"
+          envs: REGISTRY,REPOSITORY,IMAGE_TAG
+          run: |
+            pwd
+            ls -arth
+            echo "docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG ."
+            docker ...
               
