@@ -82,8 +82,8 @@ jobs:
           #port: 22
           envs: REGISTRY,REPOSITORY,IMAGE_TAG
           run: |
-            pwd
-            ls -arth
-            echo "docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG ."
-            docker ...
+            echo "Pulling  image from ECR..."
+            sudo docker pull $REGISTRY/$REPOSITORY:$IMAGE_TAG
+            echo "Docker pull completed..."
+            
               
