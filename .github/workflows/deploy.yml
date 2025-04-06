@@ -80,11 +80,11 @@ jobs:
           username: ubuntu
           key: ${{ env.PRIVATE_SSH_KEY }}
           #port: 22
-          envs: REGISTRY,REPOSITORY,IMAGE_TAG
+          envs: REGISTRY,REPOSITORY,IMAGE_TAG,AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION
           script: |-
             sudo aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 692859919251.dkr.ecr.eu-north-1.amazonaws.com
             echo "Pulling  image from ECR..."
-            sudo docker pull $REGISTRY/$REPOSITORY:$IMAGE_TAG
+            sudo docker pull 692859919251.dkr.ecr.eu-north-1.amazonaws.com/example-node-app:b67afe39986144686c7603db3b17fa1974c99d6b
             echo "Docker pull completed..."
             echo "Running the container..."
             sudo docker run -d -p 80:8080 $REGISTRY/$REPOSITORY:$IMAGE_TAG
