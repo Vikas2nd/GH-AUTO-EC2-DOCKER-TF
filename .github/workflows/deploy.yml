@@ -107,7 +107,7 @@ jobs:
             export AWS_REGION=${AWS_REGION}
     
             echo "Logging in to ECR...."
-            sudo aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin $REGISTRY
+            sudo aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 692859919251.dkr.ecr.eu-north-1.amazonaws.com
             echo "Logged in successful..."
     
             echo "Pulling  image from ECR..."
