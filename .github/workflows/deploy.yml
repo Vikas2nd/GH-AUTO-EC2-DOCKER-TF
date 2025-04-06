@@ -70,32 +70,19 @@ jobs:
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
         working-directory: ./nodeapp  
       - name: Deploy docker image to EC2
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: example-node-app
-          IMAGE_TAG: ${{ github.sha }}
-          AWS_DEFAULT_REGION: eu-north-1
         uses: appleboy/ssh-action@master
+        env:
+          FOO: "BAR"
+          BAR: "FOO"
+          SHA: ${{ github.sha }}
         with:
           host: ${{ env.SERVER_PUBLIC_IP }}
           username: ubuntu
           key: ${{ env.PRIVATE_SSH_KEY }}
           #port: 22
-          #envs: PRIVATE_SSH_KEY,REGISTRY,REPOSITORY,IMAGE_TAG,AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_DEFAULT_REGION,AWS_REGION
-          script: |-
-            sudo apt update
-            sudo apt install docker.io -y
-            sudo apt -y install unzip curl
-            sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-            sudo unzip -o awscliv2.zip
-            echo "AWS CLI version: $(aws --version)"
-            echo "Docker version: $(docker --version)"
-    
-            echo "Stop the current running container if exist..."
-            sudo docker stop myappcontainer || true
-    
-            echo "Remove the previous container..."
-            sudo docker rm myappcontainer || true
-
-            docker pull $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          envs: FOO,BAR,SHA
+          script: |
+            echo "I am $FOO"
+            echo "I am $BAR"
+            echo "sha: $SHA"
               
