@@ -18,7 +18,7 @@ resource "aws_instance" "servernode" {
   instance_type          = "t3.micro"
   key_name               = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.maingroup.id]
-  iam_instance_profile   = aws_iam_instance_profile.ec2-profile1.name
+  iam_instance_profile   = aws_iam_instance_profile.ec2-profile2.name
   connection {
     type        = "ssh"
     host        = self.public_ip
@@ -31,7 +31,7 @@ resource "aws_instance" "servernode" {
   }
 }
 
-resource "aws_iam_instance_profile" "ec2-profile1" {
+resource "aws_iam_instance_profile" "ec2-profile2" {
   name = "ec2-profile1"
   role = "ECR-LOGIN-AUTO"
 }
