@@ -32,7 +32,7 @@ resource "aws_instance" "servernode" {
 }
 
 resource "aws_iam_instance_profile" "ec2-profile2" {
-  name = "ec2-profile1"
+  name = "ec2-profile2"
   role = "ECR-LOGIN-AUTO"
 }
 
